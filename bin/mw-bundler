@@ -42,7 +42,14 @@ if (program.metabook && program.args.length > 0) {
 // Default metabook.json
 var metabook = {
 	items: [],
-	licenses: [],
+	licenses: [ {
+		mw_rights_icon: '',
+		mw_rights_page: '',
+		mw_rights_text: '',
+		mw_rights_url: '',
+		name: 'License',
+		type: 'license'
+	} ],
 	subtitle: "",
 	summary: "",
 	title: "",
@@ -50,7 +57,7 @@ var metabook = {
 	version: 1,
 	wikis: [
        {
-           baseurl: "http://en.wikipedia.org/w",
+           baseurl: 'http://' + program.prefix + '.wikipedia.org/w',
            imagesize: 1200,
            keep_tmpfiles: false,
            script_extension: ".php",
@@ -61,28 +68,23 @@ var metabook = {
 	]
 };
 program.args.forEach(function(title) {
+	// xxx fetch latest revision and timestamp?
 	var item = {
-		items: [
-			{
-				content_type: 'text/x-wiki',
-				currentVersion: 1,
-				title: title,
-				type: 'article',
-				url: 'http://'+program.prefix+'.wikipedia.org/wiki/'+title
-			}
-		],
+		content_type: 'text/x-wiki',
 		title: title,
-		type: 'chapter'
+		type: 'article',
+		url: 'http://'+program.prefix+'.wikipedia.org/wiki/'+title
 	};
 	metabook.items.push(item);
 });
 metabook.wikis[0].baseurl = 'http://'+program.prefix+'.wikipedia.org/w';
-// Load metabook.json if given
+
+// Replace with metabook.json if given
 if (program.metabook) {
 	metabook = JSON.parse(fs.readFileSync(program.metabook, 'utf8'));
 }
 
-// Default nfo.json
+// Create/load nfo.json
 var nfo = metabook.wikis[0];
 if (program.nfo) {
 	nfo = JSON.parse(fs.readFileSync(program.nfo, 'utf8'));
@@ -98,5 +100,6 @@ if ((!program.directory) && (!program.output)) {
 return bundler.bundle(metabook, nfo, {
 	nozip: !!program.directory,
 	output: program.directory || program.output,
-	verbose: !!program.verbose
+	verbose: !!program.verbose,
+	debug: true // XXX
 });
