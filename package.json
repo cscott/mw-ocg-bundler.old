@@ -21,7 +21,9 @@
     "tmp": "0.0.21",
     "es6-shim": "~0.9.1",
     "archiver": "~0.4.10",
-    "rimraf": "~2.2.2"
+    "rimraf": "~2.2.2",
+    "sqlite3": "~2.1.19",
+    "q": "~0.9.7"
   },
   "bin": {
     "mw-bundler": "./bin/mw-bundler"
