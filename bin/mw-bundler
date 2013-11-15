@@ -85,7 +85,9 @@ if (program.metabook) {
 }
 
 // Create/load nfo.json
-var nfo = metabook.wikis[0];
+var nfo = JSON.parse(JSON.stringify(metabook.wikis[0])); // poor man's clone
+nfo.base_url = nfo.baseurl; // field names differ slightly =(
+delete nfo.baseurl;
 if (program.nfo) {
 	nfo = JSON.parse(fs.readFileSync(program.nfo, 'utf8'));
 }
