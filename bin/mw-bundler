@@ -5,6 +5,7 @@ var PARALLEL_FETCH_LIMIT = 5; // how many images to fetch in parallel
 var program = require('commander');
 var bundler = require('../');
 var fs = require('fs');
+var url = require('url');
 
 program
 	.version(bundler.version)
@@ -16,7 +17,7 @@ program
 	.option('-o, --output <filename>',
 			'Save zip to the given <filename>', null)
 	.option('-p, --prefix <prefix>',
-			'Which wiki prefix to use to resolve the title', 'en')
+			'Which wiki prefix to use to resolve the title', 'enwiki')
     .option('-n, --nfo <nfo.json>',
 			'Use mediawiki API configuration from the specified json file')
 	.option('-a, --api <url>',
@@ -57,7 +58,8 @@ var metabook = {
 	version: 1,
 	wikis: [
        {
-           baseurl: 'http://' + program.prefix + '.wikipedia.org/w',
+           baseurl: // xxx only works on __wiki
+		   'http://' + program.prefix.replace(/wiki$/, '.wikipedia.org/w'),
            imagesize: 1200,
            keep_tmpfiles: false,
            script_extension: ".php",
@@ -75,12 +77,11 @@ program.args.forEach(function(title) {
 		content_type: 'text/x-wiki',
 		title: title,
 		type: 'article',
-		url: 'http://'+program.prefix+'.wikipedia.org/wiki/'+title,
+		url: url.resolve(metabook.wikis[0].baseurl, '/wiki/' + title),
 		wiki: 0 /* select a wiki configuration */
 	};
 	metabook.items.push(item);
 });
-metabook.wikis[0].baseurl = 'http://'+program.prefix+'.wikipedia.org/w';
 
 // Replace with metabook.json if given
 if (program.metabook) {
@@ -93,8 +94,8 @@ metabook.wikis.forEach(function(w) {
 		w.parsoid = program.api;
 	}
 	if (!w.prefix) {
-		// xxx this is a hack; ideally we'd fetch the interwikimap from wmf
-		w.prefix = w.baseurl.replace(/^https?:\/\//, '').replace(/[.].*/, '');
+		// xxx this is a hack; ideally we'd fetch the interwikimap from parsoid
+		w.prefix = w.baseurl.replace(/^https?:\/\//, '').replace(/[.].*/, 'wiki');
 	}
 });
 
