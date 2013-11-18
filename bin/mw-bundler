@@ -63,7 +63,9 @@ var metabook = {
            script_extension: ".php",
 		   format: "nuwiki",
            type: "wikiconf",
-		   parsoid: program.api
+		   // our extra fields
+		   parsoid: program.api,
+		   prefix: program.prefix
         }
 	]
 };
@@ -73,7 +75,8 @@ program.args.forEach(function(title) {
 		content_type: 'text/x-wiki',
 		title: title,
 		type: 'article',
-		url: 'http://'+program.prefix+'.wikipedia.org/wiki/'+title
+		url: 'http://'+program.prefix+'.wikipedia.org/wiki/'+title,
+		wiki: 0 /* select a wiki configuration */
 	};
 	metabook.items.push(item);
 });
@@ -84,6 +87,17 @@ if (program.metabook) {
 	metabook = JSON.parse(fs.readFileSync(program.metabook, 'utf8'));
 }
 
+// add our extension fields, if missing
+metabook.wikis.forEach(function(w) {
+	if (!w.parsoid) {
+		w.parsoid = program.api;
+	}
+	if (!w.prefix) {
+		// xxx this is a hack; ideally we'd fetch the interwikimap from wmf
+		w.prefix = w.baseurl.replace(/^https?:\/\//, '').replace(/[.].*/, '');
+	}
+});
+
 // Create/load nfo.json
 var nfo = JSON.parse(JSON.stringify(metabook.wikis[0])); // poor man's clone
 nfo.base_url = nfo.baseurl; // field names differ slightly =(
@@ -91,7 +105,6 @@ delete nfo.baseurl;
 if (program.nfo) {
 	nfo = JSON.parse(fs.readFileSync(program.nfo, 'utf8'));
 }
-if (!nfo.parsoid) { nfo.parsoid = program.api; }
 
 // set default output filename
 if ((!program.directory) && (!program.output)) {
