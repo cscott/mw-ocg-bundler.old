@@ -1,16 +1,15 @@
 {
   "name": "mw-bundler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generates resource bundles from mediawiki articles",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "cscott/mw-bundler"
+    "url": "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Collection/OfflineContentGenerator/bundler.git"
   },
   "keywords": [
     "wikitext"
   ],
-  "author": "C. Scott Ananian",
   "license": "GPLv2",
   "dependencies": {
     "archiver": "~0.4.10",
