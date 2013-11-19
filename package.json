@@ -1,0 +1,28 @@
+{
+  "name": "mw-bundler",
+  "version": "0.0.1",
+  "description": "Generates resource bundles from mediawiki articles",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "cscott/mw-bundler"
+  },
+  "keywords": [
+    "wikitext"
+  ],
+  "author": "C. Scott Ananian",
+  "license": "GPLv2",
+  "dependencies": {
+    "archiver": "~0.4.10",
+    "commander": "~2.0.0",
+    "domino": "~1.0.13",
+    "es6-shim": "~0.9.1",
+    "request": "~2.27.0",
+    "rimraf": "~2.2.2",
+    "sqlite3": "~2.1.19",
+    "when": "~2.6.0"
+  },
+  "bin": {
+    "mw-bundler": "./bin/mw-bundler"
+  }
+}

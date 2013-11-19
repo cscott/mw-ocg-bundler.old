@@ -1,0 +1,183 @@
+#!/usr/bin/env node
+require('es6-shim'); // for Map, endsWith, etc.
+
+var PARALLEL_FETCH_LIMIT = 5; // how many images to fetch in parallel
+
+var program = require('commander');
+var bundler = require('../');
+var fs = require('fs');
+var nodefn = require("when/node/function");
+var url = require('url');
+var when = require('when');
+
+var Siteinfo = require('../lib/siteinfo');
+
+program
+	.version(bundler.version)
+	.usage('[options] <title> [title...]')
+    .option('-m, --metabook <metabook.json>',
+			'Use article list and structure from the specified json file')
+	.option('-d, --directory <dirname>',
+			'Don\'t zip up the output bundle; leave it in <dirname>')
+	.option('-o, --output <filename>',
+			'Save zip to the given <filename>', null)
+	.option('-p, --prefix <prefix>',
+			'Which wiki prefix to use to resolve the title', 'enwiki')
+    .option('-n, --nfo <nfo.json>',
+			'Use mediawiki API configuration from the specified json file')
+	.option('-a, --api <url>',
+			'Parsoid API root', 'http://parsoid-lb.eqiad.wikimedia.org/')
+    .option('-v, --verbose',
+			'Print verbose progress information');
+program.on('--help', function() {
+    console.log('  If -o is omitted, creates bundle.zip');
+	console.log('  The -m option can be used instead of specifying titles');
+});
+
+program.parse(process.argv);
+
+if (program.args.length === 0 && !program.metabook) {
+	console.error('Either the -m option or a page title is required.');
+	return 1;
+}
+if (program.metabook && program.args.length > 0) {
+	console.error('Too many arguments.');
+	return 1;
+}
+
+var p = when.resolve();
+var metabook, nfo, interwikimap = [];
+
+// fetch siteinfo from enwiki to get interwiki prefix mapping
+p = p.then(function() {
+	return Siteinfo.fetch([{
+		baseurl: 'http://en.wikipedia.org/w'
+	}], 0, true);
+}).then(function(resp) {
+	interwikimap = resp.interwikimap;
+});
+
+var DEFAULT_METABOOK = {
+	items: [],
+	licenses: [ {
+		mw_rights_icon: '',
+		mw_rights_page: '',
+		mw_rights_text: '',
+		mw_rights_url: '',
+		name: 'License',
+		type: 'license'
+	} ],
+	subtitle: "",
+	summary: "",
+	title: "",
+	type: "collection",
+	version: 1,
+	wikis: [
+       {
+           baseurl: null, // filled in below
+           imagesize: 1200,
+           keep_tmpfiles: false,
+           script_extension: ".php",
+		   format: "nuwiki",
+           type: "wikiconf",
+		   // our extra fields
+		   parsoid: program.api,
+		   prefix: program.prefix
+        }
+	]
+};
+
+// Load metabook.json
+if (program.metabook) {
+	// Load from file and parse JSON
+	p = p.then(function() {
+		return nodefn.call(fs.readFile.bind(fs), program.metabook, 'utf8');
+	}).then(function(data) {
+		metabook = JSON.parse(data);
+	});
+} else {
+	// Create a metabook.json from the given prefix and page titles
+	p = p.then(function() {
+		metabook = JSON.parse(JSON.stringify(DEFAULT_METABOOK)); // clone
+		// look up prefix
+		// XXX THIS IS A HACK, since prefix !== interwiki.  But we don't
+		// seem to have a better way to do the reverse mapping.
+		var w;
+		interwikimap.forEach(function(ww) {
+			if (ww.prefix === program.prefix ||
+			    (ww.prefix + 'wiki') === program.prefix) {
+				w = ww;
+			}
+		});
+		if (!w) {
+			throw new Error('Prefix not found: ' + program.prefix);
+		}
+		if (!w.url.endsWith('/wiki/$1')) {
+			throw new Error('Can\'t make API url from: ' + w.url);
+		}
+		metabook.wikis[0].baseurl = w.url.replace(/iki\/\$1$/, '');
+		// fill in items
+		program.args.forEach(function(title) {
+			// xxx fetch latest revision and timestamp?
+			var item = {
+				content_type: 'text/x-wiki',
+				title: title,
+				type: 'article',
+				url: w.url.replace(/\$1/, title),
+				wiki: 0 /* select a wiki configuration */
+			};
+			metabook.items.push(item);
+		});
+	});
+}
+
+// add our extension fields, if missing
+p = p.then(function() {
+	metabook.wikis.forEach(function(w) {
+		if (!w.parsoid) {
+			w.parsoid = program.api;
+		}
+		if (!w.prefix) {
+			// look for baseurl in interwikimap
+			var url = w.baseurl.replace(/\/w$/, '/wiki/$1');
+			interwikimap.forEach(function(ww) {
+				if (url === ww.url) {
+					w.prefix = ww.prefix;
+				}
+			});
+		}
+	});
+});
+
+// Create/load nfo.json
+p = p.then(function() {
+	nfo = JSON.parse(JSON.stringify(metabook.wikis[0])); // poor man's clone
+	nfo.base_url = nfo.baseurl; // field names differ slightly =(
+	delete nfo.baseurl;
+});
+if (program.nfo) {
+	p = p.then(function() {
+		return nodefn.call(fs.readFile.bind(fs), program.nfo, 'utf8');
+	}).then(function(data) {
+		nfo = JSON.parse(data);
+	});
+}
+
+// set default output filename
+if ((!program.directory) && (!program.output)) {
+	program.output = "bundle.zip";
+}
+
+// okay, do it!
+p = p.then(function() {
+	return bundler.bundle(metabook, nfo, {
+		nozip: !!program.directory,
+		output: program.directory || program.output,
+		verbose: !!program.verbose,
+		//debug: true // XXX
+	});
+}).then(function(status) {
+	process.exit(status);
+});
+
+p.done();
