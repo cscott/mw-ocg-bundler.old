@@ -12,7 +12,6 @@
   ],
   "license": "GPLv2",
   "dependencies": {
-    "archiver": "~0.4.10",
     "commander": "~2.0.0",
     "domino": "~1.0.13",
     "es6-shim": "~0.9.1",
