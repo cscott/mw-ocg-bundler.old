@@ -177,9 +177,7 @@ p = p.then(function() {
 		//debug: true // XXX
 	});
 }).then(function(status) {
-	if (status) {
-		process.exit(status);
-	}
+	process.exit(status);
 });
 
 p.done();
