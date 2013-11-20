@@ -141,8 +141,13 @@ p = p.then(function() {
 			// look for baseurl in interwikimap
 			var url = w.baseurl.replace(/\/w$/, '/wiki/$1');
 			interwikimap.forEach(function(ww) {
+				if (/^(w|wikipedia)$/.test(ww.prefix)) {
+					// filter out some aliases (which aren't supported by
+					// parsoid)
+					return;
+				}
 				if (url === ww.url) {
-					w.prefix = ww.prefix;
+					w.prefix = ww.prefix + 'wiki';
 				}
 			});
 		}
