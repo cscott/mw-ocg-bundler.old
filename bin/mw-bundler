@@ -10,6 +10,7 @@ var nodefn = require("when/node/function");
 var url = require('url');
 var when = require('when');
 
+var Api = require('../lib/api');
 var Siteinfo = require('../lib/siteinfo');
 
 program
@@ -72,19 +73,42 @@ var DEFAULT_METABOOK = {
 	title: "",
 	type: "collection",
 	version: 1,
-	wikis: [
-       {
-           baseurl: null, // filled in below
-           imagesize: 1200,
-           keep_tmpfiles: false,
-           script_extension: ".php",
-		   format: "nuwiki",
-           type: "wikiconf",
-		   // our extra fields
-		   parsoid: program.api,
-		   prefix: program.prefix
-        }
-	]
+	wikis: [{
+		baseurl: null, // API endpoint for the wiki, filled in below
+		imagesize: 1200,
+		keep_tmpfiles: false,
+		script_extension: ".php",
+		format: "nuwiki",
+		type: "wikiconf",
+		// our extra fields
+		parsoid: program.api,
+		prefix: program.prefix,
+		filerepos: undefined // link to commons, etc; filled in below
+		// the filerepos field looks something like:
+		/*
+		filerepos: [{
+			name: 'local',
+			displayname: 'Wikimedia Commons',
+			rootUrl: "//upload.wikimedia.org/wikipedia/commons",
+			local: true,
+			apiUrl: 'http://commons.wikimedia.org/w/api.php',
+			wiki: 0 // pointer to an entry in metabook.wikis
+		}]
+		*/
+	}]
+};
+
+var COMMONSWIKI = {
+	baseurl: 'http://commons.wikimedia.org/w/api.php',
+	imagesize: 1200,
+	keep_tmpfiles: false,
+	script_extension: ".php",
+	format: "nuwiki",
+	type: "wikiconf",
+	// our extra fields
+	parsoid: program.api,
+	prefix: 'commonswiki',
+	filerepos: undefined
 };
 
 // Load metabook.json
@@ -131,27 +155,75 @@ if (program.metabook) {
 	});
 }
 
+var needsCommonsWiki = false;
+// promise to fetch missing 'filerepos' field in wiki config
+var fetchFileRepos = function(wiki) {
+	var api = new Api(metabook.wikis);
+	var w = metabook.wikis[wiki];
+	var p = when.resolve();
+	if (!w.filerepos) {
+		w.filerepos = [];
+		p = p.then(function() {
+			return api.request(wiki, {
+				action: 'query',
+				meta: 'filerepoinfo'
+			});
+		}).then(function(resp) {
+			resp.query.repos.forEach(function(repo) {
+				w.filerepos.push(repo);
+				// link to a wiki # in metabooks.json
+				if (repo.local) {
+					repo.wiki = wiki;
+					return;
+				}
+				// xxx note that apiUrl isn't (yet) part of the
+				// filerepoinfo response.
+				if (!repo.apiUrl) {
+					repo.apiUrl = COMMONSWIKI.baseurl;
+				}
+				for (var i=0; i<metabook.wikis.length; i++) {
+					if (metabook.wikis[i].baseurl === repo.apiUrl) {
+						repo.wiki = i;
+						return;
+					}
+				}
+				// fudge a pointer to commons
+				needsCommonsWiki = true;
+				repo.wiki = metabook.wikis.length;
+			});
+		});
+	}
+	return p;
+};
 // add our extension fields, if missing
 p = p.then(function() {
-	metabook.wikis.forEach(function(w) {
+	var pp = when.resolve();
+	metabook.wikis.forEach(function(w, idx) {
 		if (!w.parsoid) {
 			w.parsoid = program.api;
 		}
 		if (!w.prefix) {
-			// look for baseurl in interwikimap
-			var url = w.baseurl.replace(/\/w$/, '/wiki/$1');
-			interwikimap.forEach(function(ww) {
-				if (/^(w|wikipedia)$/.test(ww.prefix)) {
-					// filter out some aliases (which aren't supported by
-					// parsoid)
-					return;
-				}
-				if (url === ww.url) {
-					w.prefix = ww.prefix + 'wiki';
-				}
+			// look up siteid in siteinfo
+			pp = pp.then(function() {
+				return Siteinfo.fetch(metabook.wikis, idx);
+			}).then(function(resp) {
+				w.prefix = resp.general.wikiid;
+			});
+		}
+		if (!w.filerepos) {
+			pp = pp.then(function() {
+				return fetchFileRepos(idx);
 			});
 		}
 	});
+	return pp;
+});
+// fudge a pointer to commonswiki if needed
+p = p.then(function() {
+	if (needsCommonsWiki) {
+		metabook.wikis.push(COMMONSWIKI);
+		return fetchFileRepos(metabook.wikis.length - 1);
+	}
 });
 
 // Create/load nfo.json
