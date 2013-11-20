@@ -91,7 +91,7 @@ var DEFAULT_METABOOK = {
 			displayname: 'Wikimedia Commons',
 			rootUrl: "//upload.wikimedia.org/wikipedia/commons",
 			local: true,
-			apiUrl: 'http://commons.wikimedia.org/w/api.php',
+			scriptDirUrl: 'http://commons.wikimedia.org/w/api.php',
 			wiki: 0 // pointer to an entry in metabook.wikis
 		}]
 		*/
@@ -176,13 +176,14 @@ var fetchFileRepos = function(wiki) {
 					repo.wiki = wiki;
 					return;
 				}
-				// xxx note that apiUrl isn't (yet) part of the
+				// xxx note that scriptDirUrl isn't (yet) part of the
 				// filerepoinfo response.
-				if (!repo.apiUrl) {
-					repo.apiUrl = COMMONSWIKI.baseurl;
+				// see https://gerrit.wikimedia.org/r/96568
+				if (!repo.scriptDirUrl) {
+					repo.scriptDirUrl = COMMONSWIKI.baseurl;
 				}
 				for (var i=0; i<metabook.wikis.length; i++) {
-					if (metabook.wikis[i].baseurl === repo.apiUrl) {
+					if (metabook.wikis[i].baseurl === repo.scriptDirUrl) {
 						repo.wiki = i;
 						return;
 					}
