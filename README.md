@@ -1,5 +1,7 @@
 # mw-bundler
 
+[![Build Status][1]][2] [![dependency status][3]][4] [![dev dependency status][5]][6]
+
 A mediawiki article spider tool.
 
 This tool grabs all the dependencies for a given set of articles and
@@ -8,11 +10,16 @@ https://www.mediawiki.org/wiki/PDF_rendering/Bundle_format
 
 ## Installation
 
-Tested with node 0.10.  Probably any recent node will work.
+Node version 0.8 and 0.10 are tested to work.
 
 Install the node package depdendencies with:
 ```
 npm install
+```
+
+Install other system dependencies.
+```
+apt-get install zip
 ```
 
 ## Running
@@ -38,3 +45,10 @@ bin/mw-bundler --help
 Copyright (c) 2013 C. Scott Ananian
 
 Licensed under GPLv2.
+
+[1]: https://travis-ci.org/cscott/mw-bundler.png
+[2]: https://travis-ci.org/cscott/mw-bundler
+[3]: https://david-dm.org/cscott/mw-bundler.png
+[4]: https://david-dm.org/cscott/mw-bundler
+[5]: https://david-dm.org/cscott/mw-bundler/dev-status.png
+[6]: https://david-dm.org/cscott/mw-bundler#info=devDependencies

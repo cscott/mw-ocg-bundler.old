@@ -1,0 +1,75 @@
+{
+    "items": [
+        {
+            "content_type": "text/x-wiki",
+            "title": "United States",
+            "type": "article",
+            "url": "http://en.wikipedia.org/wiki/United States",
+            "wiki": 0,
+            "revision": "581396893"
+        }
+    ],
+    "licenses": [
+        {
+            "mw_rights_icon": "",
+            "mw_rights_page": "",
+            "mw_rights_text": "",
+            "mw_rights_url": "",
+            "name": "License",
+            "type": "license"
+        }
+    ],
+    "subtitle": "",
+    "summary": "",
+    "title": "",
+    "type": "collection",
+    "version": 1,
+    "wikis": [
+        {
+            "baseurl": "http://en.wikipedia.org/w",
+            "imagesize": 1200,
+            "keep_tmpfiles": false,
+            "script_extension": ".php",
+            "format": "nuwiki",
+            "type": "wikiconf",
+            "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+            "prefix": "enwiki",
+            "filerepos": [
+                {
+                    "name": "shared",
+                    "displayname": "Wikimedia Commons",
+                    "rootUrl": "//upload.wikimedia.org/wikipedia/commons",
+                    "local": false,
+                    "apiUrl": "http://commons.wikimedia.org/w/api.php",
+                    "wiki": 1
+                },
+                {
+                    "name": "local",
+                    "displayname": null,
+                    "rootUrl": "//upload.wikimedia.org/wikipedia/en",
+                    "local": true,
+                    "wiki": 0
+                }
+            ]
+        },
+        {
+            "baseurl": "http://commons.wikimedia.org/w/api.php",
+            "imagesize": 1200,
+            "keep_tmpfiles": false,
+            "script_extension": ".php",
+            "format": "nuwiki",
+            "type": "wikiconf",
+            "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+            "prefix": "commonswiki",
+            "filerepos": [
+                {
+                    "name": "local",
+                    "displayname": null,
+                    "rootUrl": "//upload.wikimedia.org/wikipedia/commons",
+                    "local": true,
+                    "wiki": 1
+                }
+            ]
+        }
+    ]
+}

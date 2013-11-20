@@ -1,0 +1,178 @@
+{
+    "items": [
+        {
+            "items": [
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 579329188,
+                    "revision": "579329188",
+                    "timestamp": "1383073948",
+                    "title": "1933 Atlantic hurricane season",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Atlantic_hurricane_season",
+                    "wiki": 0
+                }
+            ],
+            "title": "Introduction",
+            "type": "chapter"
+        },
+        {
+            "items": [
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 550867472,
+                    "revision": "550867472",
+                    "timestamp": "1366230514",
+                    "title": "1933 Trinidad hurricane",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Trinidad_hurricane",
+                    "wiki": 0
+                },
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 572402424,
+                    "revision": "572402424",
+                    "timestamp": "1378848251",
+                    "title": "1933 Texas tropical storm",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Texas_tropical_storm",
+                    "wiki": 0
+                },
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 579390421,
+                    "revision": "579390421",
+                    "timestamp": "1383099157",
+                    "title": "1933 Chesapeake–Potomac hurricane",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Chesapeake%E2%80%93Potomac_hurricane",
+                    "wiki": 0
+                },
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 572402369,
+                    "revision": "572402369",
+                    "timestamp": "1378848216",
+                    "title": "1933 Cuba–Brownsville hurricane",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Cuba%E2%80%93Brownsville_hurricane",
+                    "wiki": 0
+                },
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 575674769,
+                    "revision": "575674769",
+                    "timestamp": "1380856363",
+                    "title": "1933 Treasure Coast hurricane",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Treasure_Coast_hurricane",
+                    "wiki": 0
+                },
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 576090149,
+                    "revision": "576090149",
+                    "timestamp": "1381119599",
+                    "title": "1933 Outer Banks hurricane",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Outer_Banks_hurricane",
+                    "wiki": 0
+                },
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 567480201,
+                    "revision": "567480201",
+                    "timestamp": "1375840931",
+                    "title": "1933 Tampico hurricane",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Tampico_hurricane",
+                    "wiki": 0
+                },
+                {
+                    "content_type": "text/x-wiki",
+                    "currentVersion": 1,
+                    "latest": 578977949,
+                    "revision": "578977949",
+                    "timestamp": "1382894555",
+                    "title": "1933 Cuba–Bahamas hurricane",
+                    "type": "article",
+                    "url": "http://en.wikipedia.org/wiki/1933_Cuba%E2%80%93Bahamas_hurricane",
+                    "wiki": 0
+                }
+            ],
+            "title": "Storms",
+            "type": "chapter"
+        }
+    ],
+    "licenses": [
+        {
+            "mw_rights_icon": "//creativecommons.org/images/public/somerights20.png",
+            "mw_rights_text": "Creative Commons Attribution-Share Alike 3.0",
+            "mw_rights_url": "//creativecommons.org/licenses/by-sa/3.0/",
+            "name": "License",
+            "type": "license"
+        }
+    ],
+    "subtitle": "",
+    "summary": "",
+    "title": "1933 Atlantic hurricane season",
+    "type": "collection",
+    "version": 1,
+    "wikis": [
+        {
+            "baseurl": "http://en.wikipedia.org/w",
+            "imagesize": 1200,
+            "keep_tmpfiles": false,
+            "output": "/home/anomie/test.zip",
+            "script_extension": ".php",
+            "status_file": "/home/anomie/statusfile",
+            "type": "wikiconf",
+            "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+            "prefix": "enwiki",
+            "filerepos": [
+                {
+                    "name": "shared",
+                    "displayname": "Wikimedia Commons",
+                    "rootUrl": "//upload.wikimedia.org/wikipedia/commons",
+                    "local": false,
+                    "apiUrl": "http://commons.wikimedia.org/w/api.php",
+                    "wiki": 1
+                },
+                {
+                    "name": "local",
+                    "displayname": null,
+                    "rootUrl": "//upload.wikimedia.org/wikipedia/en",
+                    "local": true,
+                    "wiki": 0
+                }
+            ]
+        },
+        {
+            "baseurl": "http://commons.wikimedia.org/w/api.php",
+            "imagesize": 1200,
+            "keep_tmpfiles": false,
+            "script_extension": ".php",
+            "format": "nuwiki",
+            "type": "wikiconf",
+            "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+            "prefix": "commonswiki",
+            "filerepos": [
+                {
+                    "name": "local",
+                    "displayname": null,
+                    "rootUrl": "//upload.wikimedia.org/wikipedia/commons",
+                    "local": true,
+                    "wiki": 1
+                }
+            ]
+        }
+    ]
+}
