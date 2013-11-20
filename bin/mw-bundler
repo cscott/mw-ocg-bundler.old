@@ -16,7 +16,7 @@ var Siteinfo = require('../lib/siteinfo');
 program
 	.version(bundler.version)
 	.usage('[options] <title> [title...]')
-    .option('-m, --metabook <metabook.json>',
+	.option('-m, --metabook <metabook.json>',
 			'Use article list and structure from the specified json file')
 	.option('-d, --directory <dirname>',
 			'Don\'t zip up the output bundle; leave it in <dirname>')
@@ -24,14 +24,14 @@ program
 			'Save zip to the given <filename>', null)
 	.option('-p, --prefix <prefix>',
 			'Which wiki prefix to use to resolve the title', 'enwiki')
-    .option('-n, --nfo <nfo.json>',
+	.option('-n, --nfo <nfo.json>',
 			'Use mediawiki API configuration from the specified json file')
 	.option('-a, --api <url>',
 			'Parsoid API root', 'http://parsoid-lb.eqiad.wikimedia.org/')
-    .option('-v, --verbose',
+	.option('-v, --verbose',
 			'Print verbose progress information');
 program.on('--help', function() {
-    console.log('  If -o is omitted, creates bundle.zip');
+	console.log('  If -o is omitted, creates bundle.zip');
 	console.log('  The -m option can be used instead of specifying titles');
 });
 
@@ -129,7 +129,7 @@ if (program.metabook) {
 		var w;
 		interwikimap.forEach(function(ww) {
 			if (ww.prefix === program.prefix ||
-			    (ww.prefix + 'wiki') === program.prefix) {
+				(ww.prefix + 'wiki') === program.prefix) {
 				w = ww;
 			}
 		});
