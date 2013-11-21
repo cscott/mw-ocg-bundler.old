@@ -59,6 +59,11 @@ p = p.then(function() {
 });
 
 var DEFAULT_METABOOK = {
+	type: "collection",
+	title: "",
+	subtitle: "",
+	summary: "",
+	version: 1,
 	items: [],
 	licenses: [ {
 		mw_rights_icon: '',
@@ -68,18 +73,13 @@ var DEFAULT_METABOOK = {
 		name: 'License',
 		type: 'license'
 	} ],
-	subtitle: "",
-	summary: "",
-	title: "",
-	type: "collection",
-	version: 1,
 	wikis: [{
+		type: "wikiconf",
 		baseurl: null, // API endpoint for the wiki, filled in below
 		imagesize: 1200,
 		keep_tmpfiles: false,
 		script_extension: ".php",
 		format: "nuwiki",
-		type: "wikiconf",
 		// our extra fields
 		parsoid: program.api,
 		prefix: program.prefix,
@@ -87,6 +87,7 @@ var DEFAULT_METABOOK = {
 		// the filerepos field looks something like:
 		/*
 		filerepos: [{
+			type: 'filerepo',
 			name: 'local',
 			displayname: 'Wikimedia Commons',
 			rootUrl: "//upload.wikimedia.org/wikipedia/commons",
@@ -99,12 +100,12 @@ var DEFAULT_METABOOK = {
 };
 
 var COMMONSWIKI = {
+	type: "wikiconf",
 	baseurl: 'http://commons.wikimedia.org/w/api.php',
 	imagesize: 1200,
 	keep_tmpfiles: false,
 	script_extension: ".php",
 	format: "nuwiki",
-	type: "wikiconf",
 	// our extra fields
 	parsoid: program.api,
 	prefix: 'commonswiki',
@@ -144,9 +145,9 @@ if (program.metabook) {
 		program.args.forEach(function(title) {
 			// xxx fetch latest revision and timestamp?
 			var item = {
-				content_type: 'text/x-wiki',
-				title: title,
 				type: 'article',
+				title: title,
+				content_type: 'text/x-wiki',
 				url: w.url.replace(/\$1/, title),
 				wiki: 0 /* select a wiki configuration */
 			};
@@ -170,6 +171,7 @@ var fetchFileRepos = function(wiki) {
 			});
 		}).then(function(resp) {
 			resp.query.repos.forEach(function(repo) {
+				repo.type = 'filerepo';
 				w.filerepos.push(repo);
 				// link to a wiki # in metabooks.json
 				if (repo.local) {
