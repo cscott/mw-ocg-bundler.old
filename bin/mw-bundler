@@ -6,11 +6,11 @@ var PARALLEL_FETCH_LIMIT = 5; // how many images to fetch in parallel
 var program = require('commander');
 var bundler = require('../');
 var fs = require('fs');
-var nodefn = require("when/node/function");
 var url = require('url');
 var when = require('when');
 
 var Api = require('../lib/api');
+var P = require('../lib/p');
 var Siteinfo = require('../lib/siteinfo');
 
 program
@@ -118,7 +118,7 @@ var COMMONSWIKI = {
 if (program.metabook) {
 	// Load from file and parse JSON
 	p = p.then(function() {
-		return nodefn.call(fs.readFile.bind(fs), program.metabook, 'utf8');
+		return P.call(fs.readFile, fs, program.metabook, 'utf8');
 	}).then(function(data) {
 		metabook = JSON.parse(data);
 	});
