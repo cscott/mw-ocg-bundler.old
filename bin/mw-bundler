@@ -23,9 +23,11 @@ program
 	.option('-o, --output <filename>',
 			'Save zip to the given <filename>', null)
 	.option('-p, --prefix <prefix>',
-			'Which wiki prefix to use to resolve the title', 'enwiki')
+			'Which wiki prefix to use to resolve the title [enwiki]', 'enwiki')
 	.option('-a, --api <url>',
 			'Parsoid API root', 'http://parsoid-lb.eqiad.wikimedia.org/')
+	.option('-t, --toc <yes|no|auto>',
+			'Force presence/absence of toc [auto]', 'auto')
 	.option('-v, --verbose',
 			'Print verbose progress information')
 	.option('--debug',
@@ -201,6 +203,9 @@ var fetchFileRepos = function(wiki) {
 // add our extension fields, if missing
 p = p.then(function() {
 	var pp = when.resolve();
+	if (program.toc !== 'auto') {
+		metabook.toc = !/^(no|false|off)$/i.test(program.toc);
+	}
 	metabook.wikis.forEach(function(w, idx) {
 		if (!w.parsoid) {
 			w.parsoid = program.api;
