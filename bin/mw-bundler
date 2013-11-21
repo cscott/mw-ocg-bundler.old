@@ -27,7 +27,9 @@ program
 	.option('-a, --api <url>',
 			'Parsoid API root', 'http://parsoid-lb.eqiad.wikimedia.org/')
 	.option('-v, --verbose',
-			'Print verbose progress information');
+			'Print verbose progress information')
+	.option('--debug',
+			'Turn on debugging features (eg, full stack traces on exceptions)');
 program.on('--help', function() {
 	console.log('  If -o is omitted, creates bundle.zip');
 	console.log('  The -m option can be used instead of specifying titles');
@@ -236,7 +238,7 @@ p = p.then(function() {
 		nozip: !!program.directory,
 		output: program.directory || program.output,
 		verbose: !!program.verbose,
-		//debug: true // XXX
+		debug: !!program.debug
 	});
 }).then(function(status) {
 	process.exit(status);
