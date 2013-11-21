@@ -24,8 +24,6 @@ program
 			'Save zip to the given <filename>', null)
 	.option('-p, --prefix <prefix>',
 			'Which wiki prefix to use to resolve the title', 'enwiki')
-	.option('-n, --nfo <nfo.json>',
-			'Use mediawiki API configuration from the specified json file')
 	.option('-a, --api <url>',
 			'Parsoid API root', 'http://parsoid-lb.eqiad.wikimedia.org/')
 	.option('-v, --verbose',
@@ -47,7 +45,7 @@ if (program.metabook && program.args.length > 0) {
 }
 
 var p = when.resolve();
-var metabook, nfo, interwikimap = [];
+var metabook, interwikimap = [];
 
 // fetch siteinfo from enwiki to get interwiki prefix mapping
 p = p.then(function() {
@@ -227,20 +225,6 @@ p = p.then(function() {
 	}
 });
 
-// Create/load nfo.json
-p = p.then(function() {
-	nfo = JSON.parse(JSON.stringify(metabook.wikis[0])); // poor man's clone
-	nfo.base_url = nfo.baseurl; // field names differ slightly =(
-	delete nfo.baseurl;
-});
-if (program.nfo) {
-	p = p.then(function() {
-		return nodefn.call(fs.readFile.bind(fs), program.nfo, 'utf8');
-	}).then(function(data) {
-		nfo = JSON.parse(data);
-	});
-}
-
 // set default output filename
 if ((!program.directory) && (!program.output)) {
 	program.output = "bundle.zip";
@@ -248,7 +232,7 @@ if ((!program.directory) && (!program.output)) {
 
 // okay, do it!
 p = p.then(function() {
-	return bundler.bundle(metabook, nfo, {
+	return bundler.bundle(metabook, {
 		nozip: !!program.directory,
 		output: program.directory || program.output,
 		verbose: !!program.verbose,
