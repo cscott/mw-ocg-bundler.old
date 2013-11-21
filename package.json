@@ -18,6 +18,7 @@
     "request": "~2.27.0",
     "rimraf": "~2.2.2",
     "sqlite3": "~2.1.19",
+    "tmp": "~0.0.21",
     "when": "~2.6.0"
   },
   "devDependencies": {
