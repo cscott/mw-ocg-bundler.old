@@ -31,7 +31,7 @@ program
 			'Force presence/absence of toc [auto]', 'auto')
 	.option('-v, --verbose',
 			'Print verbose progress information')
-	.option('--debug',
+	.option('-D, --debug',
 			'Turn on debugging features (eg, full stack traces on exceptions)');
 program.on('--help', function() {
 	console.log('  If -o is omitted, creates bundle.zip');
