@@ -52,7 +52,7 @@ P.forEachSeq(Object.keys(articles), function(prefix) {
 	var args = [];
 	if (program.debug) { args.push('-D'); }
 	if (program.verbose) { args.push('-v'); }
-	args = args.concat([ '-o', outfile, '-p', prefix ]).
+	args = args.concat([ '--title', prefix, '-o', outfile, '-p', prefix ]).
 		concat(articles[prefix]);
 	console.log('mw-bundler', args.join(' '));
 	return P.call(rimraf, null, path.join(__dirname, outfile)).

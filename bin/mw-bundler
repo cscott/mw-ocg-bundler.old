@@ -29,6 +29,8 @@ program
 			'Parsoid API root', 'http://parsoid-lb.eqiad.wikimedia.org/')
 	.option('-t, --toc <yes|no|auto>',
 			'Force presence/absence of toc [auto]', 'auto')
+	.option('--title <title>',
+			'Set the title of the generated collection', null)
 	.option('-v, --verbose',
 			'Print verbose progress information')
 	.option('-D, --debug',
@@ -152,7 +154,7 @@ if (program.metabook) {
 			// xxx fetch latest revision and timestamp?
 			var item = {
 				type: 'article',
-				title: title,
+				title: title.replace(/_/g,' '),
 				content_type: 'text/x-wiki',
 				url: w.url.replace(/\$1/, title),
 				wiki: 0 /* select a wiki configuration */
@@ -248,6 +250,9 @@ if ((!program.directory) && (!program.output)) {
 
 // okay, do it!
 p = p.then(function() {
+	if (program.title) {
+		metabook.title = program.title;
+	}
 	return bundler.bundle(metabook, {
 		nozip: !!program.directory,
 		output: program.directory || program.output,
