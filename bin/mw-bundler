@@ -7,7 +7,6 @@ var fs = require('fs');
 var when = require('when');
 
 var P = require('../lib/p');
-var status = require('../lib/status');
 
 program
 	.version(bundler.version)
@@ -47,9 +46,6 @@ if (program.metabook && program.args.length > 0) {
 }
 
 var p = when.resolve();
-
-// TODO: Update this number if we ever add more bundling stages
-status.setNumStages(4);
 
 // Load metabook.json
 if (program.metabook) {
