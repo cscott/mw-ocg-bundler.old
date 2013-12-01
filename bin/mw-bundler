@@ -23,6 +23,8 @@ program
 			'Parsoid API root', 'http://parsoid-lb.eqiad.wikimedia.org/')
 	.option('-t, --toc <yes|no|auto>',
 			'Force presence/absence of toc [auto]', 'auto')
+	.option('-L, --lang <2-char lang code>',
+			'Force collection to use the given default language', null)
 	.option('--title <title>',
 			'Set the title of the generated collection', null)
 	.option('-v, --verbose',
