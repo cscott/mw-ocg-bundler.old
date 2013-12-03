@@ -8,7 +8,7 @@ var P = require('../lib/p');
 
 // ensure that we don't crash on any of our sample inputs
 describe("Basic crash test", function() {
-	['taoism.json', 'hurricanes.json' /*, 'us.json'*/].forEach(function(name) {
+	['taoism.json', 'hurricanes.json', 'papier.json'].forEach(function(name) {
 		describe(name, function() {
 			it('should bundle', function(done) {
 				this.timeout(0);

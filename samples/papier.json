@@ -1,0 +1,83 @@
+{
+  "type": "collection",
+  "title": "",
+  "subtitle": "",
+  "summary": "",
+  "version": 1,
+  "items": [
+    {
+      "type": "article",
+      "title": "Papier",
+      "content_type": "text/x-wiki",
+      "url": "http://de.wikipedia.org/wiki/Papier",
+      "wiki": 0,
+      "revision": "124970893"
+    }
+  ],
+  "licenses": [
+    {
+      "mw_rights_icon": "",
+      "mw_rights_page": "",
+      "mw_rights_text": "",
+      "mw_rights_url": "",
+      "name": "License",
+      "type": "license"
+    }
+  ],
+  "wikis": [
+    {
+      "type": "wikiconf",
+      "baseurl": "http://de.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "dewiki",
+      "filerepos": [
+        {
+          "name": "shared",
+          "displayname": "Wikimedia Commons",
+          "rootUrl": "//upload.wikimedia.org/wikipedia/commons",
+          "local": false,
+          "type": "filerepo",
+          "scriptDirUrl": "http://commons.wikimedia.org/w",
+          "wiki": 1
+        },
+        {
+          "name": "local",
+          "displayname": null,
+          "rootUrl": "//upload.wikimedia.org/wikipedia/de",
+          "local": true,
+          "type": "filerepo",
+          "wiki": 0
+        }
+      ]
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://commons.wikimedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "prefix": "commonswiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "filerepos": [
+        {
+          "name": "local",
+          "displayname": null,
+          "rootUrl": "//upload.wikimedia.org/wikipedia/commons",
+          "local": true,
+          "url": "//upload.wikimedia.org/wikipedia/commons",
+          "thumbUrl": "//upload.wikimedia.org/wikipedia/commons/thumb",
+          "initialCapital": true,
+          "scriptDirUrl": "/w",
+          "type": "filerepo",
+          "wiki": 1
+        }
+      ]
+    }
+  ],
+  "lang": "de"
+}
