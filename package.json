@@ -28,6 +28,6 @@
     "test": "mocha"
   },
   "bin": {
-    "mw-bundler": "./bin/mw-bundler"
+    "mw-ocg-bundler": "./bin/mw-ocg-bundler"
   }
 }

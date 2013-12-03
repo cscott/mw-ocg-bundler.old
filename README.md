@@ -1,4 +1,4 @@
-# mw-bundler
+# mw-ocg-bundler
 
 [![Build Status][1]][2] [![dependency status][3]][4] [![dev dependency status][5]][6]
 
@@ -26,18 +26,18 @@ apt-get install zip
 
 To generate a bundle for the wikipedia article `en:United States`:
 ```
-bin/mw-bundler -o bundle.zip --prefix en --title "United States"
+bin/mw-ocg-bundler -o bundle.zip --prefix en --title "United States"
 ```
 
 If you have a book specification (in the form of `metabook.json` and
 `nfo.json` files), use:
 ```
-bin/mw-bundler -o bundle.zip -m metabook.json -n nfo.json
+bin/mw-ocg-bundler -o bundle.zip -m metabook.json -n nfo.json
 ```
 
 For other options, see:
 ```
-bin/mw-bundler --help
+bin/mw-ocg-bundler --help
 ```
 
 ## License

@@ -54,11 +54,11 @@ P.forEachSeq(Object.keys(articles), function(prefix) {
 	if (program.verbose) { args.push('-v'); }
 	args = args.concat([ '--title', prefix, '-o', outfile, '-p', prefix ]).
 		concat(articles[prefix]);
-	console.log('mw-bundler', args.join(' '));
+	console.log('mw-ocg-bundler', args.join(' '));
 	return P.call(rimraf, null, path.join(__dirname, outfile)).
 		then(function() { }, function() { /* ignore unlink errors */ }).
 		then(function() {
-			return P.spawn(path.join(__dirname, '..', 'bin', 'mw-bundler'),
+			return P.spawn(path.join(__dirname, '..', 'bin', 'mw-ocg-bundler'),
 						   args, { cwd: __dirname, stdio: 'inherit' });
 		});
 }).done();
