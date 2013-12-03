@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Collection/OfflineContentGenerator/bundler.git"
+    "url": "wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler"
   },
   "keywords": [
     "wikitext"
