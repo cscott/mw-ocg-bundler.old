@@ -1,0 +1,352 @@
+{
+  "type": "collection",
+  "title": "PDF render demo",
+  "subtitle": "",
+  "summary": "",
+  "version": 1,
+  "items": [
+{ "type": "chapter", "title": "arwiki", "items": [
+    {
+      "type": "article",
+      "title": "ليونيل ميسي",
+      "content_type": "text/x-wiki",
+      "url": "http://ar.wikipedia.org/wiki/ليونيل_ميسي",
+      "wiki": 2,
+      "revision": "12077152"
+    }
+]},
+{ "type": "chapter", "title": "dewiki", "items": [
+    {
+      "type": "article",
+      "title": "Papier",
+      "content_type": "text/x-wiki",
+      "url": "http://de.wikipedia.org/wiki/Papier",
+      "wiki": 3,
+      "revision": "124970893"
+    }
+]},
+{ "type": "chapter", "title": "enwiki", "items": [
+    {
+      "type": "article",
+      "title": "Durian",
+      "content_type": "text/x-wiki",
+      "url": "http://en.wikipedia.org/wiki/Durian",
+      "wiki": 0,
+      "revision": "582846792"
+    }
+]},
+{ "type": "chapter", "title": "eswiki", "items": [
+    {
+      "type": "article",
+      "title": "Latas de sopa Campbell",
+      "content_type": "text/x-wiki",
+      "url": "http://es.wikipedia.org/wiki/Latas_de_sopa_Campbell",
+      "wiki": 4,
+      "revision": "69766327"
+    }
+]},
+{ "type": "chapter", "title": "fawiki", "items": [
+    {
+      "type": "article",
+      "title": "کعبه زرتشت",
+      "content_type": "text/x-wiki",
+      "url": "http://fa.wikipedia.org/wiki/کعبه_زرتشت",
+      "wiki": 5,
+      "revision": "10112325"
+    }
+]},
+{ "type": "chapter", "title": "frwiki", "items": [
+    {
+      "type": "article",
+      "title": "Trachylepis atlantica",
+      "content_type": "text/x-wiki",
+      "url": "http://fr.wikipedia.org/wiki/Trachylepis_atlantica",
+      "wiki": 6,
+      "revision": "98806935"
+    }
+]},
+{ "type": "chapter", "title": "hewiki", "items": [
+    {
+      "type": "article",
+      "title": "ספרטה",
+      "content_type": "text/x-wiki",
+      "url": "http://he.wikipedia.org/wiki/ספרטה",
+      "wiki": 7,
+      "revision": "14846789"
+    }
+]},
+{ "type": "chapter", "title": "hiwiki", "items": [
+    {
+      "type": "article",
+      "title": "रामायण",
+      "content_type": "text/x-wiki",
+      "url": "http://hi.wikipedia.org/wiki/रामायण",
+      "wiki": 8,
+      "revision": "2208228"
+    }
+]},
+{ "type": "chapter", "title": "itwiki", "items": [
+    {
+      "type": "article",
+      "title": "La vita è meravigliosa",
+      "content_type": "text/x-wiki",
+      "url": "http://it.wikipedia.org/wiki/La_vita_è_meravigliosa",
+      "wiki": 9,
+      "revision": "62811733"
+    }
+]},
+{ "type": "chapter", "title": "jawiki", "items": [
+    {
+      "type": "article",
+      "title": "熊野三山本願所",
+      "content_type": "text/x-wiki",
+      "url": "http://ja.wikipedia.org/wiki/熊野三山本願所",
+      "wiki": 10,
+      "revision": "49642623"
+    }
+]},
+{ "type": "chapter", "title": "kowiki", "items": [
+    {
+      "type": "article",
+      "title": "조화진동자",
+      "content_type": "text/x-wiki",
+      "url": "http://ko.wikipedia.org/wiki/조화진동자",
+      "wiki": 11,
+      "revision": "9335052"
+    }
+]},
+{ "type": "chapter", "title": "plwiki", "items": [
+    {
+      "type": "article",
+      "title": "Efekt potwierdzenia",
+      "content_type": "text/x-wiki",
+      "url": "http://pl.wikipedia.org/wiki/Efekt_potwierdzenia",
+      "wiki": 12,
+      "revision": "37666955"
+    }
+]},
+{ "type": "chapter", "title": "ptwiki", "items": [
+    {
+      "type": "article",
+      "title": "Scaphyglottis",
+      "content_type": "text/x-wiki",
+      "url": "http://pt.wikipedia.org/wiki/Scaphyglottis",
+      "wiki": 13,
+      "revision": "34667820"
+    }
+]},
+{ "type": "chapter", "title": "ruwiki", "items": [
+    {
+      "type": "article",
+      "title": "Битва при Платеях",
+      "content_type": "text/x-wiki",
+      "url": "http://ru.wikipedia.org/wiki/Битва_при_Платеях",
+      "wiki": 14,
+      "revision": "59114660"
+    }
+]},
+{ "type": "chapter", "title": "viwiki", "items": [
+    {
+      "type": "article",
+      "title": "Vệ tinh tự nhiên của Sao Thiên Vương",
+      "content_type": "text/x-wiki",
+      "url": "http://vi.wikipedia.org/wiki/Vệ_tinh_tự_nhiên_của_Sao_Thiên_Vương",
+      "wiki": 15,
+      "revision": "14502430"
+    }
+]},
+{ "type": "chapter", "title": "zhwiki", "items": [
+    {
+      "type": "article",
+      "title": "納粹德國海軍",
+      "content_type": "text/x-wiki",
+      "url": "http://zh.wikipedia.org/wiki/納粹德國海軍",
+      "wiki": 16,
+      "revision": "29208568"
+    }
+]}
+  ],
+  "licenses": [
+    {
+      "mw_rights_icon": "",
+      "mw_rights_page": "",
+      "mw_rights_text": "",
+      "mw_rights_url": "",
+      "name": "License",
+      "type": "license"
+    }
+  ],
+  "wikis": [
+    {
+      "type": "wikiconf",
+      "baseurl": "http://en.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "enwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://commons.wikimedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "prefix": "commonswiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://ar.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "arwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://de.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "dewiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://es.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "eswiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://fa.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "fawiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://fr.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "frwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://he.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "hewiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://hi.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "hiwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://it.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "itwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://ja.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "jawiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://ko.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "kowiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://pl.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "plwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://pt.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "ptwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://ru.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "ruwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://vi.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "viwiki"
+    },
+    {
+      "type": "wikiconf",
+      "baseurl": "http://zh.wikipedia.org/w",
+      "imagesize": 1200,
+      "keep_tmpfiles": false,
+      "script_extension": ".php",
+      "format": "nuwiki",
+      "parsoid": "http://parsoid-lb.eqiad.wikimedia.org/",
+      "prefix": "zhwiki"
+    }
+  ],
+  "lang": "en"
+}

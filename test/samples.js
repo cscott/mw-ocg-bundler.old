@@ -6,9 +6,11 @@ var path = require('path');
 var bundler = require('../');
 var P = require('../lib/p');
 
+var IMAGESIZE = 64; // very small to keep downloads short
+
 // ensure that we don't crash on any of our sample inputs
 describe("Basic crash test", function() {
-	['taoism.json', 'hurricanes.json', 'papier.json'].forEach(function(name) {
+	['taoism.json', 'hurricanes.json', 'multiwiki.json'].forEach(function(name) {
 		describe(name, function() {
 			it('should bundle', function(done) {
 				this.timeout(0);
@@ -18,6 +20,7 @@ describe("Basic crash test", function() {
 						metabook = JSON.parse(metabook);
 						return bundler.bundle(metabook, {
 							output: filename + '.zip',
+							size: IMAGESIZE,
 							verbose: false
 						});
 					}).then(function(statusCode) {
