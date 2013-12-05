@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 require('es6-shim'); // for Map, endsWith, etc.
+require('when/monitor/console'); // early debugging of promise errors
 
 var program = require('commander');
 var bundler = require('../');
@@ -88,4 +89,11 @@ p = p.then(function(metabook) {
 	process.exit(status);
 });
 
-p.done();
+p.done(null, function(err) {
+    if (program.debug && err.stack) {
+        console.error(err.stack);
+    } else {
+        console.error(err);
+    }
+    process.exit(1);
+});
