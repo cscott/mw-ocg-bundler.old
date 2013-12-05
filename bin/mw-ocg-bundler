@@ -26,6 +26,8 @@ program
 			'Force presence/absence of toc [auto]', 'auto')
 	.option('-L, --lang <2-char lang code>',
 			'Force collection to use the given default language', null)
+	.option('-s, --size <max image size>',
+			'Force the given maximum image dimension (in pixels)', null)
 	.option('--title <title>',
 			'Set the title of the generated collection', null)
 	.option('-v, --verbose',
@@ -83,7 +85,8 @@ p = p.then(function(metabook) {
 		verbose: !!program.verbose,
 		debug: !!program.debug,
 		parsoid: program.api,
-		toc: program.toc
+		toc: program.toc,
+		size: program.size
 	});
 }).then(function(status) {
 	process.exit(status);
