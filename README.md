@@ -1,4 +1,5 @@
 # mw-ocg-bundler
+[![NPM][NPM1]][NPM2]
 
 [![Build Status][1]][2] [![dependency status][3]][4] [![dev dependency status][5]][6]
 
@@ -40,11 +41,21 @@ For other options, see:
 bin/mw-ocg-bundler --help
 ```
 
+There are several rendering backends which take bundles in this format
+as inputs.  See [mw-ocg-latexer], for instance, which generates PDFs
+of mediawiki articles via [XeLaTeX].
+
 ## License
 
 Copyright (c) 2013 C. Scott Ananian
 
 Licensed under GPLv2.
+
+[mw-ocg-latexer]: https://github.com/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-latex_renderer
+[XeLaTeX]: https://en.wikipedia.org/wiki/XeTeX
+
+[NPM1]: https://nodei.co/npm/mw-ocg-bundler.png
+[NPM2]: https://nodei.co/npm/mw-ocg-bundler/
 
 [1]: https://travis-ci.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler.png
 [2]: https://travis-ci.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler
