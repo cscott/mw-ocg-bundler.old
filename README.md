@@ -59,8 +59,8 @@ Licensed under GPLv2.
 [NPM1]: https://nodei.co/npm/mw-ocg-bundler.png
 [NPM2]: https://nodei.co/npm/mw-ocg-bundler/
 
-[1]: https://travis-ci.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler.png
-[2]: https://travis-ci.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler
+[1]: https://travis-ci.org/cscott/mw-ocg-bundler.png
+[2]: https://travis-ci.org/cscott/mw-ocg-bundler
 [3]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler.png
 [4]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler
 [5]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler/dev-status.png
