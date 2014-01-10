@@ -30,6 +30,10 @@ program
 			'Force the given maximum image dimension (in pixels)', null)
 	.option('--title <title>',
 			'Set the title of the generated collection', null)
+	// set this to true to emit deprecated file formats for better pediapress
+	// compatibility
+	.option('--no-compat',
+			'Omit redundant data used for backward-compatibility')
 	.option('-v, --verbose',
 			'Print verbose progress information')
 	.option('-D, --debug',
@@ -84,6 +88,7 @@ p = p.then(function(metabook) {
 		output: program.directory || program.output,
 		verbose: !!program.verbose,
 		debug: !!program.debug,
+		compat: !!program.compat,
 		parsoid: program.api,
 		toc: program.toc,
 		size: program.size
