@@ -34,6 +34,9 @@ program
 	// compatibility
 	.option('--no-compat',
 			'Omit redundant data used for backward-compatibility')
+	// follow redirects? disable if front-end is known to give good titles.
+	.option('--no-follow',
+			'Don\'t follow article title redirects')
 	.option('-v, --verbose',
 			'Print verbose progress information')
 	.option('-D, --debug',
@@ -88,7 +91,8 @@ p = p.then(function(metabook) {
 		output: program.directory || program.output,
 		verbose: !!program.verbose,
 		debug: !!program.debug,
-		compat: !!program.compat,
+		compat: !!program.compat, // pediapress compatibility
+		follow: !!program.follow, // follow redirects
 		parsoid: program.api,
 		toc: program.toc,
 		size: program.size
