@@ -6,6 +6,7 @@ var program = require('commander');
 var bundler = require('../');
 var fs = require('fs');
 var when = require('when');
+require('rconsole');
 
 var P = require('../lib/p');
 
@@ -44,6 +45,11 @@ program
 program.on('--help', function() {
 	console.log('  If -o is omitted, creates bundle.zip');
 	console.log('  The -m option can be used instead of specifying titles');
+});
+
+console.set({
+	facility: 'local0',
+	title: 'mw-ocg-bundler'
 });
 
 program.parse(process.argv);
