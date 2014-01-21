@@ -6,7 +6,7 @@ var program = require('commander');
 var bundler = require('../');
 var fs = require('fs');
 var when = require('when');
-require('rconsole');
+var util = require('util');
 
 var P = require('../lib/p');
 
@@ -41,15 +41,12 @@ program
 	.option('-v, --verbose',
 			'Print verbose progress information')
 	.option('-D, --debug',
-			'Turn on debugging features (eg, full stack traces on exceptions)');
+			'Turn on debugging features (eg, full stack traces on exceptions)')
+	.option('--syslog',
+			'Log errors using syslog (for production deployments)');
 program.on('--help', function() {
 	console.log('  If -o is omitted, creates bundle.zip');
 	console.log('  The -m option can be used instead of specifying titles');
-});
-
-console.set({
-	facility: 'local0',
-	title: 'mw-ocg-bundler'
 });
 
 program.parse(process.argv);
@@ -62,6 +59,27 @@ if (program.metabook && program.args.length > 0) {
 	console.error('Too many arguments.');
 	return 1;
 }
+
+var Syslog = program.syslog ? require('node-syslog') : {
+	init: function() { },
+	log: function() { },
+	close: function() { }
+};
+Syslog.init(bundler.name, Syslog.LOG_PID|Syslog.LOG_ODELAY, Syslog.LOG_LOCAL0);
+
+var log = function() {
+	// en/disable log messages here
+	if (program.verbose || program.debug) {
+		console.error.apply(console, arguments);
+	}
+	try {
+		Syslog.log(Syslog.LOG_INFO, util.format.apply(this, arguments));
+	} catch (err) {
+		// This should never happen!  But don't try to convert arguments
+		// toString() if it does, since that might fail too.
+		Syslog.log(Syslog.LOG_ERR, "Could not format message! "+err);
+	}
+};
 
 var p = when.resolve();
 
@@ -95,23 +113,27 @@ p = p.then(function(metabook) {
 	return bundler.bundle(metabook, {
 		nozip: !!program.directory,
 		output: program.directory || program.output,
-		verbose: !!program.verbose,
 		debug: !!program.debug,
 		compat: !!program.compat, // pediapress compatibility
 		follow: !!program.follow, // follow redirects
 		parsoid: program.api,
 		toc: program.toc,
-		size: program.size
+		size: program.size,
+		log: log
 	});
 }).then(function(status) {
+	Syslog.close();
 	process.exit(status);
 });
 
 p.done(null, function(err) {
-    if (program.debug && err.stack) {
-        console.error(err.stack);
-    } else {
-        console.error(err);
-    }
-    process.exit(1);
+	if (program.debug && err.stack) {
+		console.error(err.stack);
+		Syslog.log(Syslog.LOG_ERR, err.stack);
+	} else {
+		console.error(err);
+		Syslog.log(Syslog.LOG_ERR, err);
+	}
+	Syslog.close();
+	process.exit(1);
 });
