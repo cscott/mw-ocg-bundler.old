@@ -13,13 +13,13 @@
   "license": "GPLv2",
   "dependencies": {
     "commander": "~2.1.0",
-    "domino": "~1.0.13",
+    "domino": "~1.0.15",
     "es6-shim": "~0.9.1",
     "node-syslog": "~1.1.7",
     "request": "~2.31.0",
     "rimraf": "~2.2.2",
     "sqlite3": "~2.1.19",
-    "tmp": "~0.0.21",
+    "tmp": "~0.0.23",
     "when": "~2.7.0"
   },
   "devDependencies": {
