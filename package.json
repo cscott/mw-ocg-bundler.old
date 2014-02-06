@@ -20,7 +20,7 @@
     "rimraf": "~2.2.2",
     "sqlite3": "~2.1.19",
     "tmp": "~0.0.23",
-    "when": "~3.1.0"
+    "bluebird": "~2.0.5"
   },
   "devDependencies": {
     "mocha": "~1.20.1"

@@ -27,7 +27,7 @@ describe("Basic crash test", function() {
 						});
 					}).then(function(statusCode) {
 						assert.equal(statusCode, 0);
-					}).ensure(function() {
+					}).finally(function() {
 						try {
 							fs.unlinkSync(filename + '.zip');
 						} catch (e) { }

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 require('es6-shim'); // for Map, endsWith, etc.
-require('when/monitor/console'); // early debugging of promise errors
 
 var program = require('commander');
 var bundler = require('../');
 var fs = require('fs');
-var when = require('when');
 var util = require('util');
+
+var Promise = require('bluebird');
 
 var P = require('../lib/p');
 
@@ -60,6 +60,8 @@ if (program.metabook && program.args.length > 0) {
 	return 1;
 }
 
+if (program.debug) { Promise.longStackTraces(); /* as soon as possible */ }
+
 var Syslog = program.syslog ? require('node-syslog') : {
 	init: function() { },
 	log: function() { },
@@ -81,7 +83,7 @@ var log = function() {
 	}
 };
 
-var p = when.resolve();
+var p = Promise.resolve();
 
 // Load metabook.json
 if (program.metabook) {
