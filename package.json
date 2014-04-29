@@ -20,10 +20,10 @@
     "rimraf": "~2.2.2",
     "sqlite3": "~2.1.19",
     "tmp": "~0.0.23",
-    "when": "~2.7.0"
+    "when": "~3.1.0"
   },
   "devDependencies": {
-    "mocha": "~1.17.0"
+    "mocha": "1.*"
   },
   "scripts": {
     "test": "mocha"
