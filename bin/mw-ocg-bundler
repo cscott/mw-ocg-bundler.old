@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 require('es6-shim'); // for Map, endsWith, etc.
+require('prfun');
 
 var program = require('commander');
 var bundler = require('../');
 var fs = require('fs');
 var util = require('util');
-
-var Promise = require('bluebird');
 
 var P = require('../lib/p');
 
@@ -59,8 +58,6 @@ if (program.metabook && program.args.length > 0) {
 	console.error('Too many arguments.');
 	return 1;
 }
-
-if (program.debug) { Promise.longStackTraces(); /* as soon as possible */ }
 
 var Syslog = program.syslog ? require('node-syslog') : {
 	init: function() { },
