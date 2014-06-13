@@ -27,14 +27,21 @@ apt-get install zip
 
 To generate a bundle for the wikipedia article `en:United States`:
 ```
-bin/mw-ocg-bundler -o bundle.zip --prefix en --title "United States"
+bin/mw-ocg-bundler -v -o bundle.zip --prefix enwiki "United States"
+```
+
+To generate a bundle for a collection of articles about the inner planets:
+```
+bin/mw-ocg-bundler -v -o bundle.zip --prefix enwiki --title Planets Mercury Venus Earth Mars
 ```
 
 If you have a book specification (in the form of `metabook.json` and
 `nfo.json` files), use:
 ```
-bin/mw-ocg-bundler -o bundle.zip -m metabook.json -n nfo.json
+bin/mw-ocg-bundler -v -o bundle.zip -m metabook.json -n nfo.json
 ```
+
+For non-interactive use feel free to remove the `-v` flag.
 
 For other options, see:
 ```
@@ -48,7 +55,7 @@ plaintext versions of mediawiki articles.
 
 ## License
 
-Copyright (c) 2013 C. Scott Ananian
+Copyright (c) 2013-2014 C. Scott Ananian
 
 Licensed under GPLv2.
 
