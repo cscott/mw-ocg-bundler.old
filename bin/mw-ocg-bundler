@@ -37,6 +37,11 @@ program
 	// follow redirects? disable if front-end is known to give good titles.
 	.option('--no-follow',
 			'Don\'t follow article title redirects')
+	// robustness
+	.option('--retries <max retries>',
+			'Retry failing HTTP requests (default 3)')
+	.option('--timeout <milliseconds>',
+			'Timeout for all HTTP requests (default 60 seconds)')
 	.option('-v, --verbose',
 			'Print verbose progress information')
 	.option('-D, --debug',
@@ -57,6 +62,13 @@ if (program.args.length === 0 && !program.metabook) {
 if (program.metabook && program.args.length > 0) {
 	console.error('Too many arguments.');
 	return 1;
+}
+
+if (program.retries !== undefined) {
+   require('../lib/retry-request').DEFAULT_RETRIES = program.retries;
+}
+if (program.timeout !== undefined) {
+   require('../lib/retry-request').DEFAULT_TIMEOUT = program.timeout;
 }
 
 var Syslog = program.syslog ? require('node-syslog') : {
