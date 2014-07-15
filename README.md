@@ -63,12 +63,12 @@ Licensed under GPLv2.
 [mw-ocg-texter]:  https://github.com/cscott/mw-ocg-texter
 [XeLaTeX]:        https://en.wikipedia.org/wiki/XeTeX
 
-[NPM1]: https://nodei.co/npm/mw-ocg-bundler.png
+[NPM1]: https://nodei.co/npm/mw-ocg-bundler.svg
 [NPM2]: https://nodei.co/npm/mw-ocg-bundler/
 
-[1]: https://travis-ci.org/cscott/mw-ocg-bundler.png
+[1]: https://travis-ci.org/cscott/mw-ocg-bundler.svg
 [2]: https://travis-ci.org/cscott/mw-ocg-bundler
-[3]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler.png
+[3]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler.svg
 [4]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler
-[5]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler/dev-status.png
+[5]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler/dev-status.svg
 [6]: https://david-dm.org/wikimedia/mediawiki-extensions-Collection-OfflineContentGenerator-bundler#info=devDependencies
