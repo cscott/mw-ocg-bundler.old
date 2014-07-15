@@ -16,7 +16,7 @@ var IMAGESIZE = 64; // very small to keep downloads short
 describe("Basic crash test", function() {
 	['taoism.json', 'hurricanes.json', 'multiwiki.json'].forEach(function(name) {
 		describe(name, function() {
-			it('should bundle', function(done) {
+			it('should bundle', function() {
 				this.timeout(0);
 				var filename = path.join(__dirname, '..', 'samples', name);
 				return P.call(fs.readFile, fs, filename, 'utf8')
@@ -33,10 +33,7 @@ describe("Basic crash test", function() {
 						try {
 							fs.unlinkSync(filename + '.zip');
 						} catch (e) { }
-					}).done(
-						function() { done(); },
-						function(err) { done(err); }
-					);
+					});
 			});
 		});
 	});
