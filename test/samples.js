@@ -6,11 +6,13 @@ require('prfun');
 var assert = require("assert");
 var fs = require('fs');
 var path = require('path');
+var util = require('util');
 
 var bundler = require('../');
 var P = require('../lib/p');
 
 var IMAGESIZE = 64; // very small to keep downloads short
+var TRAVIS = !!process.env.TRAVIS; // ensure travis doesn't time out
 
 // ensure that we don't crash on any of our sample inputs
 describe("Basic crash test", function() {
@@ -26,7 +28,12 @@ describe("Basic crash test", function() {
 						return bundler.bundle(metabook, {
 							output: filename + '.zip',
 							size: IMAGESIZE,
-							verbose: false
+							debug: TRAVIS,
+							log: function() {
+								if (!TRAVIS) { return; }
+								var time = new Date().toISOString().slice(11,23);
+								console.log(time, util.format.apply(util, arguments));
+							}
 						});
 					}).then(function(statusCode) {
 						assert.equal(statusCode, 0);
