@@ -18,6 +18,7 @@ describe("Basic crash test", function() {
 		describe(name, function() {
 			it('should bundle', function() {
 				this.timeout(0);
+				process.setMaxListeners(0);
 				var filename = path.join(__dirname, '..', 'samples', name);
 				return P.call(fs.readFile, fs, filename, 'utf8')
 					.then(function(metabook) {
