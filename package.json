@@ -1,6 +1,6 @@
 {
   "name": "mw-ocg-bundler",
-  "version": "0.2.2-git",
+  "version": "1.0.0",
   "description": "Generates resource bundles from mediawiki articles",
   "main": "lib/index.js",
   "repository": {

@@ -1,4 +1,4 @@
-# mw-ocg-bundler x.x.x (not yet released)
+# mw-ocg-bundler 1.0.0 (2014-07-26)
 * Add `authors.db` database using the `prop=contributors` mediawiki
   API to record article authorship information.
 * Add image metadata (artist, credit, license) to image database.
