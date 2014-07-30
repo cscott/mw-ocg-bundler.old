@@ -1,4 +1,6 @@
 # mw-ocg-bundler x.x.x (not yet released)
+* Use siteinfo API to get content licence for each wiki used.
+* Fix attribution links (handle protocol-relative URLs, etc).
 
 # mw-ocg-bundler 1.0.0 (2014-07-26)
 * Add `authors.db` database using the `prop=contributors` mediawiki
