@@ -1,4 +1,5 @@
 # mw-ocg-bundler x.x.x (not yet released)
+* Fix the `-d` option (images were being deleted from the directory).
 
 # mw-ocg-bundler 1.0.1 (2014-07-29)
 * Use siteinfo API to get content licence for each wiki used.
