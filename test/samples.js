@@ -35,8 +35,9 @@ describe("Basic crash test", function() {
 								console.log(time, util.format.apply(util, arguments));
 							}
 						});
-					}).then(function(statusCode) {
-						assert.equal(statusCode, 0);
+					}).then(function(_) {
+						// should resolve with no value
+						assert.equal(_, undefined);
 					}).finally(function() {
 						try {
 							fs.unlinkSync(filename + '.zip');

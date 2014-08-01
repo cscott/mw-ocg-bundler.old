@@ -15,7 +15,6 @@
     "commander": "~2.2.0",
     "domino": "~1.0.17",
     "es6-shim": "~0.13.0",
-    "node-syslog": "~1.1.7",
     "prfun": "~1.0.0",
     "readable-stream": "~1.0.0",
     "request": "~2.37.0",
