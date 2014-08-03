@@ -134,7 +134,15 @@ p = p.then(function(metabook) {
 	});
 }).then(function(status) {
 	Syslog.close();
-	process.exit(status);
+	if (status !== 0) {
+	    // process.exit completes abruptly; sometimes there is
+	    // outstanding "stuff" which node still needs to do
+	    // (actually closing files, etc).  In theory this shouldn't
+	    // matter, but in practice it does. :(  So don't call
+	    // process.exit unless something seemed to have already
+	    // gone wrong.
+	    process.exit(status);
+	}
 });
 
 p.done(null, function(err) {
