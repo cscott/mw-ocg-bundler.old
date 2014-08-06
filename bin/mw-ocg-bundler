@@ -37,6 +37,9 @@ program
 	// follow redirects? disable if front-end is known to give good titles.
 	.option('--no-follow',
 			'Don\'t follow article title redirects')
+	// use for ZIM backend to ensure local links work.
+	.option('--save-redirects',
+			'Save information about article title redirects')
 	// robustness
 	.option('--retries <max retries>',
 			'Retry failing HTTP requests (default 3)')
@@ -141,6 +144,7 @@ p = p.then(function(metabook) {
 		debug: !!program.debug,
 		compat: !!program.compat, // pediapress compatibility
 		follow: !!program.follow, // follow redirects
+		saveRedirects: !!program.saveRedirects, // save redirect info
 		parsoid: program.api,
 		toc: program.toc,
 		size: program.size,
