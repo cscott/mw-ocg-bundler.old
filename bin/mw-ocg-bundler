@@ -71,15 +71,19 @@ if (program.timeout !== undefined) {
 
 var log = function() {
 	try {
+		var message = util.format.apply(null, arguments);
+		var level = /^ERROR:/.test(message) ? 'error' :
+			/^WARN:/.test(message) ? 'warn' :
+			'info';
 		// en/disable log messages here
-		if (program.verbose || program.debug) {
+		if (program.verbose || program.debug || level === 'error') {
 			console.error.apply(console, arguments);
 		}
 		if (process.send) {
 			process.send({
 				type: 'log',
-				level: 'info',
-				message: util.format.apply(null, arguments)
+				level: level,
+				message: message
 			});
 		}
 	} catch (err) {
