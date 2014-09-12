@@ -101,6 +101,11 @@ var log = function() {
 	}
 };
 
+if (program.debug) {
+	// easier-to-read filenames, for debugging
+	require('../lib/image').COMPAT_FILENAMES = true;
+}
+
 var p = Promise.resolve();
 
 // Load metabook.json
