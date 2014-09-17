@@ -28,6 +28,8 @@ program
 			'Force collection to use the given default language', null)
 	.option('-s, --size <max image size>',
 			'Force the given maximum image dimension (in pixels)', null)
+	.option('--papersize <letter|a4|auto>',
+			'Set paper size', 'auto')
 	.option('--title <title>',
 			'Set the title of the generated collection', null)
 	// set this to true to emit deprecated file formats for better pediapress
@@ -137,6 +139,38 @@ if ((!program.directory) && (!program.output)) {
 p = p.then(function(metabook) {
 	if (program.title) {
 		metabook.title = program.title;
+	}
+	if (!metabook.papersize) {
+		if (program.papersize === 'auto') {
+			// use user's default papersize, as spec'ed by libpaper.
+			// this may be a linuxism, but it's harmless if not present.
+			if (process.env.PAPERSIZE) {
+				metabook.papersize = process.env.PAPERSIZE;
+				return metabook;
+			}
+			return P.call(fs.readFile, fs,
+						  process.env.PAPERCONF || '/etc/papersize', 'utf8').
+				then(function(paperconf) {
+					// remove anything starting with # (comments)
+					// ignore whitespace, take the "first string"
+					// case-insensitive
+					paperconf = paperconf.replace(/#[^\r\n]*/g, '').trim().
+						replace(/\s[\s\S]*/, '').toLowerCase();
+					metabook.papersize = paperconf;
+					return metabook;
+				}, function() {
+					// no such file; leave papersize unspecified.
+					return metabook;
+				});
+		}
+		metabook.papersize = program.papersize;
+	}
+	return metabook;
+}).then(function(metabook) {
+	if (metabook.papersize !== undefined &&
+		!/^(letter|a4)$/.test(metabook.papersize)) {
+		log("WARN: unknown papersize:", metabook.papersize);
+		delete metabook.papersize;
 	}
 	return bundler.bundle(metabook, {
 		nozip: !!program.directory,
