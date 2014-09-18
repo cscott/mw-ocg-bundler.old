@@ -12,7 +12,8 @@ var bundler = require('../');
 var P = require('../lib/p');
 
 var IMAGESIZE = 64; // very small to keep downloads short
-var TRAVIS = !!process.env.TRAVIS; // ensure travis doesn't time out
+// extra logging in travis/jenkins, ensure they don't timeout w/o output
+var TRAVIS = !!(process.env.TRAVIS || process.env.ZUUL_COMMIT);
 
 // ensure that we don't crash on any of our sample inputs
 describe("Basic crash test", function() {
