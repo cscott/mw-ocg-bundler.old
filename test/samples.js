@@ -17,7 +17,7 @@ var TRAVIS = !!(process.env.TRAVIS || process.env.ZUUL_COMMIT);
 
 // ensure that we don't crash on any of our sample inputs
 describe("Basic crash test", function() {
-	['taoism.json', 'hurricanes.json', 'multiwiki.json'].forEach(function(name) {
+	['taoism.json', 'hurricanes.json', 'multiwiki.json', 'subpage.json'].forEach(function(name) {
 		describe(name, function() {
 			it('should bundle', function() {
 				this.timeout(0);
@@ -28,6 +28,7 @@ describe("Basic crash test", function() {
 						metabook = JSON.parse(metabook);
 						return bundler.bundle(metabook, {
 							output: filename + '.zip',
+							parsoid: 'http://parsoid-lb.eqiad.wikimedia.org/',
 							size: IMAGESIZE,
 							debug: TRAVIS,
 							log: function() {
