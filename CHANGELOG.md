@@ -1,5 +1,12 @@
 # mw-ocg-bundler x.x.x (not yet released)
 * Fix the `-d` option (images were being deleted from the directory).
+* Download reliability fixes (fsync, download verification, etc).
+* New logging framework.
+* Save details of title redirects for zimwriter.
+* Use `/etc/papersize` to select a default paper size.
+* Reduce default maximum image resolution to 600x600 pixels.
+* Improve `Metabook.fromArticles` API for external use.
+* Fixes for various crashers.
 
 # mw-ocg-bundler 1.0.1 (2014-07-29)
 * Use siteinfo API to get content licence for each wiki used.
