@@ -1,4 +1,4 @@
-# mw-ocg-bundler x.x.x (not yet released)
+# mw-ocg-bundler 1.1.0 (2014-09-30)
 * Fix the `-d` option (images were being deleted from the directory).
 * Download reliability fixes (fsync, download verification, etc).
 * New logging framework.
